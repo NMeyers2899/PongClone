@@ -60,11 +60,6 @@ namespace MathForGames
             // Loops through the array to get each character to Draw.
             for (int i = 0; i < _actors.Length; i++)
             {
-                // If the actor's start function hasn't been called yet...
-                if (!_actors[i].Started)
-                    // ...the current actor calls its Start function.
-                    _actors[i].Start();
-
                 _actors[i].Draw();
             }
         }
@@ -77,11 +72,6 @@ namespace MathForGames
             // Loops through the array to get each character to End.
             for (int i = 0; i < _actors.Length; i++)
             {
-                // If the actor's start function hasn't been called yet...
-                if (!_actors[i].Started)
-                    // ...the current actor calls its Start function.
-                    _actors[i].Start();
-
                 _actors[i].End();
             }
         }

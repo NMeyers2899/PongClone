@@ -26,7 +26,7 @@ namespace MathForGames
             {
                 Update();
                 Draw();
-                Thread.Sleep(100);
+                Thread.Sleep(50);
             }
 
             End();
@@ -42,8 +42,20 @@ namespace MathForGames
             AddScene(gameBoard);
 
             Player player = new Player('|', 5, 5, 1, "Player", ConsoleColor.Red);
-            Player2 player2 = new Player2('|', 15, 5, 1, "Player2", ConsoleColor.Blue);
-            Ball ball = new Ball('.', 10, 5, 0.5f);
+            Player player2 = new Player('|', 15, 5, 1, "Player2", ConsoleColor.Blue);
+            Ball ball = new Ball('.', 10, 5, 1);
+
+            for(int i = 0; i < 11; i++)
+            {
+                Actor wall = new Actor('_', 5 + i, 2, "Wall");
+                gameBoard.AddActor(wall);
+            }
+
+            for (int i = 0; i < 11; i++)
+            {
+                Actor wall = new Actor('_', 5 + i, 8, "Wall");
+                gameBoard.AddActor(wall);
+            }
 
             gameBoard.AddActor(player);
             gameBoard.AddActor(player2);

@@ -30,7 +30,7 @@ namespace MathForGames
 
         public override void Start()
         {
-            Velocity = new Vector2 { X = -1, Y = 0.5f };
+            Velocity = new Vector2 { X = -1, Y = 1 };
         }
 
         public override void Update()
@@ -38,14 +38,17 @@ namespace MathForGames
             Position += Velocity;
         }
 
+        public override void Draw()
+        {
+            Engine.TryRender(Icon, Position);
+        }
+
         public override void OnCollision(Actor actor)
         {
             if (actor.Name == "Wall")
-                Position -= Velocity;
+                Velocity = -Velocity;
             else if(actor.Name == "Player" || actor.Name == "Player2")
-            {
-                Velocity = -Velocity * Speed;
-            }
+                Velocity = -Velocity;
         }
     }
 }

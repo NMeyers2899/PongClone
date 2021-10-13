@@ -36,10 +36,21 @@ namespace MathForGames
             ConsoleKey keyPress = Engine.GetNextKey();
 
             // Determines which direction the player character moves in.
-            if (keyPress == ConsoleKey.W)
-                moveDirection = new Vector2 { Y = -1 };
-            else if (keyPress == ConsoleKey.S)
-                moveDirection = new Vector2 { Y = 1 };
+            if(Name == "Player")
+            {
+                if (keyPress == ConsoleKey.W)
+                    moveDirection = new Vector2 { Y = -1 };
+                else if (keyPress == ConsoleKey.S)
+                    moveDirection = new Vector2 { Y = 1 };
+            }
+            else if (Name == "Player2")
+            {
+                if (keyPress == ConsoleKey.UpArrow)
+                    moveDirection = new Vector2 { Y = -1 };
+                else if (keyPress == ConsoleKey.DownArrow)
+                    moveDirection = new Vector2 { Y = 1 };
+            }
+
 
             Velocity = moveDirection * Speed;
 
