@@ -29,9 +29,14 @@ namespace MathLibrary
             return new Vector2 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y };
         }
 
-        public static Vector2 operator -(Vector2 lhs)
+        /// <summary>
+        /// Finds the inverse of the vector.
+        /// </summary>
+        /// <param name="vector"> The vector that will be inversed. </param>
+        /// <returns> The inverse of the vector. </returns>
+        public static Vector2 operator -(Vector2 vector)
         {
-            return new Vector2 { X = -lhs.X, Y = -lhs.Y };
+            return new Vector2 { X = -vector.X, Y = -vector.Y };
         }
 
         /// <summary>

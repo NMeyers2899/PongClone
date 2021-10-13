@@ -26,7 +26,7 @@ namespace MathForGames
             {
                 Update();
                 Draw();
-                Thread.Sleep(50);
+                Thread.Sleep(15);
             }
 
             End();
