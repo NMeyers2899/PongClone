@@ -51,7 +51,15 @@ namespace MathForGames
             else if (actor.Name == "Player" || actor.Name == "Player2")
                 Velocity = new Vector2 { X = -Velocity.X, Y = Velocity.Y };
             else if (actor.Name == "Goal")
-                Engine.CloseApplication();
+                ResetPositon();
+        }
+
+        /// <summary>
+        /// Resets the position of the ball to its original position.
+        /// </summary>
+        public void ResetPositon()
+        {
+            Position = new Vector2 { X = 10, Y = 5 };
         }
     }
 }
