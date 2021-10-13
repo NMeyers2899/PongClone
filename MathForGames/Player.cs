@@ -43,7 +43,7 @@ namespace MathForGames
                 else if (keyPress == ConsoleKey.S)
                     moveDirection = new Vector2 { Y = 1 };
             }
-            else if (Name == "Player2")
+            if (Name == "Player2")
             {
                 if (keyPress == ConsoleKey.UpArrow)
                     moveDirection = new Vector2 { Y = -1 };
@@ -60,13 +60,11 @@ namespace MathForGames
         public override void Draw()
         {
             Engine.TryRender(Icon, Position);
-            Engine.TryRender(Icon, Position + new Vector2 { Y = 1 });
         }
 
         public override void OnCollision(Actor actor)
         {
-            if (actor.Name == "Wall")
-                Position -= Velocity;
+            
         }
     }
 }

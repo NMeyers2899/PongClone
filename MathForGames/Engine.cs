@@ -57,6 +57,18 @@ namespace MathForGames
                 gameBoard.AddActor(wall);
             }
 
+            for(int i = 0; i < 8; i++)
+            {
+                Actor goal = new Actor(' ', 4, 2 + i, "Goal");
+                gameBoard.AddActor(goal);
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                Actor goal = new Actor(' ', 16, 2 + i, "Goal");
+                gameBoard.AddActor(goal);
+            }
+
             gameBoard.AddActor(player);
             gameBoard.AddActor(player2);
             gameBoard.AddActor(ball);

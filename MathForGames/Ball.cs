@@ -30,6 +30,7 @@ namespace MathForGames
 
         public override void Start()
         {
+            base.Start();
             Velocity = new Vector2 { X = -1, Y = 1 };
         }
 
@@ -46,9 +47,11 @@ namespace MathForGames
         public override void OnCollision(Actor actor)
         {
             if (actor.Name == "Wall")
-                Velocity = -Velocity;
-            else if(actor.Name == "Player" || actor.Name == "Player2")
-                Velocity = -Velocity;
+                Velocity = new Vector2 { X = Velocity.X, Y = -Velocity.Y };
+            else if (actor.Name == "Player" || actor.Name == "Player2")
+                Velocity = new Vector2 { X = -Velocity.X, Y = Velocity.Y };
+            else if (actor.Name == "Goal")
+                Engine.CloseApplication();
         }
     }
 }
