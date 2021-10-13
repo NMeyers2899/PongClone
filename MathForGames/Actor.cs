@@ -37,6 +37,11 @@ namespace MathForGames
             get { return _icon; }
         }
 
+        public string Name
+        {
+            get { return _name; }
+        }
+
         public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor color = ConsoleColor.White)
         {
             _icon = new Icon { Symbol = icon, Color = color };

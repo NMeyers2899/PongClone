@@ -5,7 +5,7 @@ using MathLibrary;
 
 namespace MathForGames
 {
-    class Player : Actor
+    class Player2 : Actor
     {
         private float _speed;
         private Vector2 _velocity;
@@ -22,7 +22,7 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, string name = "Player", 
+        public Player2(char icon, float x, float y, float speed, string name = "Player2",
             ConsoleColor color = ConsoleColor.White) : base(icon, x, y, name, color)
         {
             _speed = speed;
@@ -36,9 +36,9 @@ namespace MathForGames
             ConsoleKey keyPress = Engine.GetNextKey();
 
             // Determines which direction the player character moves in.
-            if (keyPress == ConsoleKey.W)
+            if (keyPress == ConsoleKey.UpArrow)
                 moveDirection = new Vector2 { Y = -1 };
-            else if (keyPress == ConsoleKey.S)
+            else if (keyPress == ConsoleKey.DownArrow)
                 moveDirection = new Vector2 { Y = 1 };
 
             Velocity = moveDirection * Speed;

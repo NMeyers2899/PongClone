@@ -26,7 +26,7 @@ namespace MathForGames
             {
                 Update();
                 Draw();
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
             End();
@@ -37,6 +37,18 @@ namespace MathForGames
         /// </summary>
         private void Start()
         {
+            Scene gameBoard = new Scene();
+
+            AddScene(gameBoard);
+
+            Player player = new Player('|', 5, 5, 1, "Player", ConsoleColor.Red);
+            Player2 player2 = new Player2('|', 15, 5, 1, "Player2", ConsoleColor.Blue);
+            Ball ball = new Ball('.', 10, 5, 0.5f);
+
+            gameBoard.AddActor(player);
+            gameBoard.AddActor(player2);
+            gameBoard.AddActor(ball);
+
             _scenes[_currentSceneIndex].Start();
 
             Console.CursorVisible = false;
