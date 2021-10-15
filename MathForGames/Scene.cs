@@ -22,7 +22,7 @@ namespace MathForGames
         public virtual void Start()
         {
             // Loops through the _actors array and gets all actors in it to Start.
-            for(int i = 0; i < _actors.Length; i++)
+            for (int i = 0; i < _actors.Length; i++)
                 _actors[i].Start();
         }
 
@@ -32,7 +32,7 @@ namespace MathForGames
         public virtual void Update()
         {
             // Loops through the array to get each character to Update.
-            for(int i = 0; i < _actors.Length; i++)
+            for (int i = 0; i < _actors.Length; i++)
             {
                 // If the actor's start function hasn't been called yet...
                 if (!_actors[i].Started)
@@ -45,7 +45,7 @@ namespace MathForGames
                 for (int j = 0; j < _actors.Length; j++)
                 {
                     // If they have collided...
-                    if(_actors[i].Position == _actors[j].Position && j != i)
+                    if (_actors[i].Position == _actors[j].Position && j != i)
                         // ...calls the OnCollision function for the actor.
                         _actors[i].OnCollision(_actors[j]);
                 }
@@ -115,7 +115,7 @@ namespace MathForGames
             for (int i = 0; i < _actors.Length; i++)
             {
                 // If the current actor in _actors is not equal to actor...
-                if(_actors[i] != actor)
+                if (_actors[i] != actor)
                 {
                     // ...set the tempArray at j to the actor at i in _actors and increment j.
                     tempArray[j] = _actors[i];

@@ -36,7 +36,7 @@ namespace MathForGames
             ConsoleKey keyPress = Engine.GetNextKey();
 
             // Determines which direction the player character moves in.
-            if(Name == "Player")
+            if (Name == "Player")
             {
                 if (keyPress == ConsoleKey.W)
                     moveDirection = new Vector2 { Y = -1 };

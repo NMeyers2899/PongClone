@@ -12,6 +12,8 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private static Icon[,] _buffer;
+        private static int _redScore = 0;
+        private static int _blueScore = 0;
 
         /// <summary>
         /// Called to begin the application.
@@ -44,8 +46,10 @@ namespace MathForGames
             Player player = new Player('|', 5, 5, 1, "Player", ConsoleColor.Red);
             Player player2 = new Player('|', 15, 5, 1, "Player2", ConsoleColor.Blue);
             Ball ball = new Ball('.', 10, 5, 1);
+            UIText scoreBoard = new UIText(4, 0, "Score Board", ConsoleColor.White, 16, 2, "Red : " +
+                _redScore + "  Blue : " + _blueScore);
 
-            for(int i = 0; i < 11; i++)
+            for (int i = 0; i < 11; i++)
             {
                 Actor wall = new Actor('_', 5 + i, 2, "Wall");
                 gameBoard.AddActor(wall);
@@ -57,21 +61,22 @@ namespace MathForGames
                 gameBoard.AddActor(wall);
             }
 
-            for(int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
-                Actor goal = new Actor(' ', 4, 2 + i, "Goal");
-                gameBoard.AddActor(goal);
+                Actor redGoal = new Actor(' ', 4, 2 + i, "Red Goal");
+                gameBoard.AddActor(redGoal);
             }
 
             for (int i = 0; i < 8; i++)
             {
-                Actor goal = new Actor(' ', 16, 2 + i, "Goal");
-                gameBoard.AddActor(goal);
+                Actor blueGoal = new Actor(' ', 16, 2 + i, "Blue Goal");
+                gameBoard.AddActor(blueGoal);
             }
 
             gameBoard.AddActor(player);
             gameBoard.AddActor(player2);
             gameBoard.AddActor(ball);
+            gameBoard.AddActor(scoreBoard);
 
             _scenes[_currentSceneIndex].Start();
 
@@ -104,12 +109,12 @@ namespace MathForGames
             _scenes[_currentSceneIndex].Draw();
 
             // For each position in buffer, print out the symbol in its chosen color.
-            for(int y = 0; y < _buffer.GetLength(1); y++)
+            for (int y = 0; y < _buffer.GetLength(1); y++)
             {
-                for(int x = 0; x < _buffer.GetLength(0); x++)
+                for (int x = 0; x < _buffer.GetLength(0); x++)
                 {
                     // If the symbol at [x, y] is \0...
-                    if(_buffer[x, y].Symbol == '\0')
+                    if (_buffer[x, y].Symbol == '\0')
                         // ...set the symbol at that position to an empty space.
                         _buffer[x, y].Symbol = ' ';
 
@@ -141,7 +146,7 @@ namespace MathForGames
             Scene[] tempArray = new Scene[_scenes.Length + 1];
 
             // Copies all of the old values from the array and adds them to the new array.
-            for(int i = 0; i < _scenes.Length; i++)
+            for (int i = 0; i < _scenes.Length; i++)
                 tempArray[i] = _scenes[i];
 
             // Sets the last index to be a new scene.
@@ -178,7 +183,7 @@ namespace MathForGames
         public static bool TryRender(Icon icon, Vector2 position)
         {
             // If the position is out of bounds...
-            if(position.X < 0 || position.X >= _buffer.GetLength(0) || position.Y < 0 || 
+            if (position.X < 0 || position.X >= _buffer.GetLength(0) || position.Y < 0 || 
                 position.Y >= _buffer.GetLength(1))
                 // ...it returns false.
                 return false;
@@ -195,6 +200,16 @@ namespace MathForGames
         public static void CloseApplication()
         {
             _applicationShouldClose = true;
+        }
+
+        public static void IncrementRedScore()
+        {
+            _redScore += 1;
+        }
+
+        public static void IncrementBlueScore()
+        {
+            _blueScore += 1;
         }
     }
 }
