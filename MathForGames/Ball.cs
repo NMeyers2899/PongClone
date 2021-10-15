@@ -5,6 +5,12 @@ using MathLibrary;
 
 namespace MathForGames
 {
+    public struct GameStats
+    {
+        public static int RedScore;
+        public static int BlueScore;
+    }
+
     class Ball : Actor
     {
         private float _speed;
@@ -50,14 +56,14 @@ namespace MathForGames
                 Velocity = new Vector2 { X = Velocity.X, Y = -Velocity.Y };
             else if (actor.Name == "Player" || actor.Name == "Player2")
                 Velocity = new Vector2 { X = -Velocity.X, Y = Velocity.Y };
-            else if (actor.Name == "Red Goal")
-            {
-                Engine.IncrementScore("Red");
-                ResetPositon();
-            }
             else if (actor.Name == "Blue Goal")
             {
-                Engine.IncrementScore("Blue");
+                GameStats.RedScore++;
+                ResetPositon();
+            }
+            else if (actor.Name == "Red Goal")
+            {
+                GameStats.BlueScore++;
                 ResetPositon();
             }
         }

@@ -12,8 +12,6 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private static Icon[,] _buffer;
-        private static int _redScore = 0;
-        private static int _blueScore = 0;
 
         /// <summary>
         /// Called to begin the application.
@@ -46,8 +44,9 @@ namespace MathForGames
             Player player = new Player('|', 5, 5, 1, "Player", ConsoleColor.Red);
             Player player2 = new Player('|', 15, 5, 1, "Player2", ConsoleColor.Blue);
             Ball ball = new Ball('.', 10, 5, 1);
-            UIText scoreBoard = new UIText(4, 0, "Score Board", ConsoleColor.White, 22, 1, "Red : " +
-                _redScore + "  Blue : " + _blueScore);
+            UIText player1Score = new UIText(4, 0, "Player 1 Score", ConsoleColor.White, 22, 1);
+            UIText player2Score = new UIText(4, 1, "Player 2 Score", ConsoleColor.White, 22, 1);
+            ScoreBoard scoreBoard = new ScoreBoard(player1Score, player2Score);
 
             for (int i = 0; i < 11; i++)
             {
@@ -202,18 +201,6 @@ namespace MathForGames
         public static void CloseApplication()
         {
             _applicationShouldClose = true;
-        }
-
-        /// <summary>
-        /// Increments the score of whoever won the current round.
-        /// </summary>
-        /// <param name="winner"> The color of the winning player for that round. </param>
-        public static void IncrementScore(string winner)
-        {
-            if (winner == "Red")
-                _redScore++;
-            else if (winner == "Blue")
-                _blueScore++;
         }
     }
 }
