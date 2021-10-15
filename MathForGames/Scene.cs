@@ -10,6 +10,7 @@ namespace MathForGames
         ///  Array that contains all actors in the scene.
         /// </summary>
         private Actor[] _actors;
+        private UIText[] _UIElements;
 
         public Scene()
         {
@@ -52,6 +53,19 @@ namespace MathForGames
             }
         }
 
+        public virtual void UpdateUI()
+        {
+            for (int i = 0; i < _UIElements.Length; i++)
+            {
+                if (!_UIElements[i].Started)
+                {
+                    _UIElements[i].Start();
+                }
+
+                _UIElements[i].Update();
+            }
+        }
+
         /// <summary>
         /// Calls the draw for every actor within the scene.
         /// </summary>
@@ -61,6 +75,14 @@ namespace MathForGames
             for (int i = 0; i < _actors.Length; i++)
             {
                 _actors[i].Draw();
+            }
+        }
+
+        public virtual void DrawUI()
+        {
+            for (int i = 0; i < _UIElements.Length; i++)
+            {
+                _UIElements[i].Draw();
             }
         }
 
@@ -91,6 +113,26 @@ namespace MathForGames
 
             // Sets the last index to be a new scene.
             tempArray[_actors.Length] = actor;
+
+            // Set the old array to the new array.
+            _actors = tempArray;
+        }
+
+        /// <summary>
+        /// Appends a new actor to the scenes array of actors.
+        /// </summary>
+        /// <param name="actor"> The actor being added to the scene. </param>
+        public void AddUIElement(UIText UI)
+        {
+            // Creates a temporary array.
+            UIText[] tempArray = new UIText[_actors.Length + 1];
+
+            // Copies all of the old values from the array and adds them to the new array.
+            for (int i = 0; i < _UIElements.Length; i++)
+                tempArray[i] = _UIElements[i];
+
+            // Sets the last index to be a new scene.
+            tempArray[_actors.Length] = UI;
 
             // Set the old array to the new array.
             _actors = tempArray;

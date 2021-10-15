@@ -46,7 +46,7 @@ namespace MathForGames
             Player player = new Player('|', 5, 5, 1, "Player", ConsoleColor.Red);
             Player player2 = new Player('|', 15, 5, 1, "Player2", ConsoleColor.Blue);
             Ball ball = new Ball('.', 10, 5, 1);
-            UIText scoreBoard = new UIText(4, 0, "Score Board", ConsoleColor.White, 16, 2, "Red : " +
+            UIText scoreBoard = new UIText(4, 0, "Score Board", ConsoleColor.White, 22, 1, "Red : " +
                 _redScore + "  Blue : " + _blueScore);
 
             for (int i = 0; i < 11; i++)
@@ -76,7 +76,7 @@ namespace MathForGames
             gameBoard.AddActor(player);
             gameBoard.AddActor(player2);
             gameBoard.AddActor(ball);
-            gameBoard.AddActor(scoreBoard);
+            gameBoard.AddUIElement(scoreBoard);
 
             _scenes[_currentSceneIndex].Start();
 
@@ -89,6 +89,7 @@ namespace MathForGames
         private void Update()
         {
             _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].UpdateUI();
 
             // Keeps inputs from piling up, allowing one input per update.
             while (Console.KeyAvailable)
@@ -107,6 +108,7 @@ namespace MathForGames
             Console.SetCursorPosition(0, 0);
 
             _scenes[_currentSceneIndex].Draw();
+            _scenes[_currentSceneIndex].DrawUI();
 
             // For each position in buffer, print out the symbol in its chosen color.
             for (int y = 0; y < _buffer.GetLength(1); y++)
@@ -202,14 +204,16 @@ namespace MathForGames
             _applicationShouldClose = true;
         }
 
-        public static void IncrementRedScore()
+        /// <summary>
+        /// Increments the score of whoever won the current round.
+        /// </summary>
+        /// <param name="winner"> The color of the winning player for that round. </param>
+        public static void IncrementScore(string winner)
         {
-            _redScore += 1;
-        }
-
-        public static void IncrementBlueScore()
-        {
-            _blueScore += 1;
+            if (winner == "Red")
+                _redScore++;
+            else if (winner == "Blue")
+                _blueScore++;
         }
     }
 }

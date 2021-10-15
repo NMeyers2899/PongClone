@@ -52,12 +52,12 @@ namespace MathForGames
                 Velocity = new Vector2 { X = -Velocity.X, Y = Velocity.Y };
             else if (actor.Name == "Red Goal")
             {
-                Engine.IncrementRedScore();
+                Engine.IncrementScore("Red");
                 ResetPositon();
             }
             else if (actor.Name == "Blue Goal")
             {
-                Engine.IncrementBlueScore();
+                Engine.IncrementScore("Blue");
                 ResetPositon();
             }
         }
